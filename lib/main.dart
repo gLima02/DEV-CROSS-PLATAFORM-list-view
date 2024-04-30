@@ -30,28 +30,32 @@ class ListaPage extends StatefulWidget {
 }
 
 class _ListaPageState extends State<ListaPage> {
-  List<IconData> icones = List.filled(contatos.length, Icons.favorite_border);
-
+  int cont = 0; 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ListView Builder')),
+      appBar: AppBar(title: Text('contador de favoritos: $cont'),),
       body: ListView.builder(
         itemCount: contatos.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             leading: CircleAvatar(
-              child: Text(contatos[index].nome.substring(0, 1)),
+              backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=?'),
             ),
             title: Text(contatos[index].nome),
             subtitle: Text(contatos[index].email),
             trailing: IconButton(
-              icon: Icon(icones[index]), // Usa o ícone correspondente ao estado armazenado na lista
+              icon: Icon(contatos[index].icone), // Usa o ícone correspondente ao estado armazenado na lista
               onPressed: () {
                 setState(() {
                   // Alterna entre os ícones favorito com e sem preenchimento para a linha selecionada
-                  icones[index] = (icones[index] == Icons.favorite) ? Icons.favorite_border : Icons.favorite;
-                });
+                    if (contatos[index].icone == Icons.favorite) {
+                        contatos[index].icone = Icons.favorite_border;
+                        cont-- ;
+                    } else {
+                              contatos[index].icone = Icons.favorite;
+                              cont++;
+}                });
               },
             ),
           );

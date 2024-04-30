@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
+
 class Contato{
   String nome;
   String email;
   bool favorito = false;
+  IconData icone = Icons.favorite_border; 
   Contato(this.nome, this.email);
 }
 
