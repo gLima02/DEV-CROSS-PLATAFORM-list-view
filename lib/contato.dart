@@ -1,6 +1,7 @@
 class Contato{
   String nome;
   String email;
+  bool favorito = false;
   Contato(this.nome, this.email);
 }
 
